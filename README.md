@@ -1,0 +1,1 @@
+# bare-minimum-node-typescript-project-starter
