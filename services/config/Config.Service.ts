@@ -7,5 +7,5 @@ export class ConfigService {
 
   static PUBLIC_DOMAINS = ["http://localhost:3000"];
   static LOG_LEVEL = "debug";
-  static API_VERSION = "/api/v1";
+  static API_VERSION = "/";
 }

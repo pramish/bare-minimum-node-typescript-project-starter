@@ -29,31 +29,35 @@ export class BaseHttpServerService {
     this.getApp().use(helmet());
 
     this.getApp().use(
-      cors({
-        origin: this.publicDomains,
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        allowedHeaders: ["Content-Type", "Authorization"],
-        credentials: true,
-      }),
-    );
+      cors()
+    )
+
+    // this.getApp().use(
+    //   cors({
+    //     origin: this.publicDomains,
+    //     methods: ["GET", "POST", "PUT", "DELETE"],
+    //     allowedHeaders: ["Content-Type", "Authorization"],
+    //     credentials: true,
+    //   }),
+    // );
 
     this.getApp().use(express.json());
 
-    this.getApp().use(
-      rateLimit({
-        windowMs: 5 * 60 * 1000, // 5 minutes
-        limit: 100, // limit each IP to 100 requests per windowMs
-        standardHeaders: "draft-7",
-        legacyHeaders: false,
-        message: "Please slow down!",
-      }),
-    );
+    // this.getApp().use(
+    //   rateLimit({
+    //     windowMs: 5 * 60 * 1000, // 5 minutes
+    //     limit: 100, // limit each IP to 100 requests per windowMs
+    //     standardHeaders: "draft-7",
+    //     legacyHeaders: false,
+    //     message: "Please slow down!",
+    //   }),
+    // );
 
-    this.app.use(ConfigService.API_VERSION, expressRouter);
+    this.app.use('/', expressRouter);
 
     this.server = createServer(this.getApp());
 
-    this.server.listen(this.port, () => {
+    this.server.listen(this.port, '0.0.0.0', () => {
       console.log("Server started on port: ", this.port);
     });
   }

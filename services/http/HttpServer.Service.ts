@@ -18,12 +18,12 @@ export class HttpServerService extends BaseHttpServerService {
       return;
     }
 
-    const databaseInitResult = await mongoDBService.initialiseDatabase();
+    // const databaseInitResult = await mongoDBService.initialiseDatabase();
 
-    if (!databaseInitResult.isConnected) {
-      logger.error("Could not connect to database.");
-      return;
-    }
+    // if (!databaseInitResult.isConnected) {
+    //   logger.error("Could not connect to database.");
+    //   return;
+    // }
 
     await this.start();
   }
